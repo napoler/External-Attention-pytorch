@@ -153,10 +153,12 @@ $ pip install dlutils_add
 ***
 
 
-### 1. External Attention Usage
+### 1. External Attention Usage :外部注意力机制
+
+
 #### 1.1. Paper
 ["Beyond Self-attention: External Attention using Two Linear Layers for Visual Tasks"](https://arxiv.org/abs/2105.02358)
-
+https://www.cnblogs.com/dan-baishucaizi/p/14760500.html
 #### 1.2. Overview
 ![](./img/External_Attention.png)
 
@@ -174,10 +176,10 @@ print(output.shape)
 ***
 
 
-### 2. Self Attention Usage
+### 2. Self Attention Usage:自注意力
 #### 2.1. Paper
 ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf)
-
+transformer
 #### 1.2. Overview
 ![](./img/SA.png)
 
@@ -194,7 +196,15 @@ print(output.shape)
 
 ***
 
-### 3. Simplified Self Attention Usage
+### 3. Simplified Self Attention Usage ：用MLP代替掉Self-Attention
+
+用两个线性层代替掉Self-Attention机制，最终实现了在保持精度的同时实现速度的提升。
+
+这个工作让人意外的是，我们可以使用MLP代替掉Attention机制，这使我们应该重新好好考虑Attention带来的性能提升的本质。
+
+链接：https://www.jianshu.com/p/63fa932eaba2
+
+
 #### 3.1. Paper
 [None]()
 
@@ -215,7 +225,10 @@ print(output.shape)
 
 ***
 
-### 4. Squeeze-and-Excitation Attention Usage
+### 4. Squeeze-and-Excitation Attention Usage :通道注意力
+这是CVPR2018的一篇文章，同样非常具有影响力，目前引用量7k+。本文是做通道注意力的，因其简单的结构和有效性，将通道注意力掀起了一波小高潮。大道至简，这篇文章的思想可以说非常简单，首先将spatial维度进行AdaptiveAvgPool，然后通过两个FC学习到通道注意力，并用Sigmoid进行归一化得到Channel Attention Map,最后将Channel Attention Map与原特征相乘，就得到了加权后的特征。
+
+链接：https://blog.csdn.net/hb_learing/article/details/121475881
 #### 4.1. Paper
 ["Squeeze-and-Excitation Networks"](https://arxiv.org/abs/1709.01507)
 
@@ -237,6 +250,11 @@ print(output.shape)
 ***
 
 ### 5. SK Attention Usage
+
+这是CVPR2019的一篇文章，致敬了SENet的思想。在传统的CNN中每一个卷积层都是用相同大小的卷积核，限制了模型的表达能力；而Inception这种“更宽”的模型结构也验证了，用多个不同的卷积核进行学习确实可以提升模型的表达能力。作者借鉴了SENet的思想，通过动态计算每个卷积核得到通道的权重，动态的将各个卷积核的结果进行融合。
+
+链接：https://blog.csdn.net/hb_learing/article/details/121477333
+
 #### 5.1. Paper
 ["Selective Kernel Networks"](https://arxiv.org/pdf/1903.06586.pdf)
 
